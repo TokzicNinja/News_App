@@ -8,8 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,6 +23,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
         super(c, 0, news);
     }
 
+    @SuppressLint("StringFormatInvalid")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -36,6 +35,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
         News currentNews = getItem(position);
 
         TextView sectionNameView = listItemView.findViewById(R.id.section_name);
+        assert currentNews != null;
         sectionNameView.setText(currentNews.getSectionName());
 
         TextView webUrlView = listItemView.findViewById(R.id.web_url);
@@ -46,7 +46,6 @@ public class NewsAdapter extends ArrayAdapter<News> {
 
         TextView publicationDateView = listItemView.findViewById(R.id.publication_date);
 
-        //Make sure to pass the difference between today's date and the date it was published
         Date dateToday = new Date();
         Date datePublished = null;
         @SuppressLint("SimpleDateFormat") DateFormat dateFormatToday = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
@@ -86,26 +85,26 @@ public class NewsAdapter extends ArrayAdapter<News> {
 
             if(elapsedHours==1)
             {
-                publicationDateView.setText("Posted " + elapsedHours + " hour ago ");
+                publicationDateView.setText(getContext().getResources().getString(R.string.posted_an_hour,elapsedHours));
             }
             else
             {
-                publicationDateView.setText("Posted " + elapsedHours + " hours ago ");
+                publicationDateView.setText(getContext().getResources().getString(R.string.posted_hours_ago,elapsedHours));
             }
         }
         else
             {
             if (elapsedDays <= 30) {
                 if (elapsedDays == 1) {
-                    publicationDateView.setText("Posted " + elapsedDays + " day ago");
+                    publicationDateView.setText(getContext().getResources().getString(R.string.posted_a_day,elapsedDays));
                 } else {
-                    publicationDateView.setText("Posted " + elapsedDays + " days ago");
+                    publicationDateView.setText(getContext().getResources().getString(R.string.posted_days,elapsedDays));
                 }
             } else {
                 if (elapsedMonths == 1) {
-                    publicationDateView.setText("Posted " + elapsedMonths + " month ago");
+                    publicationDateView.setText(getContext().getResources().getString(R.string.posted_a_month ,elapsedMonths ));
                 } else {
-                    publicationDateView.setText("Posted " + elapsedMonths + " months ago");
+                    publicationDateView.setText(getContext().getResources().getString(R.string.posted_months,elapsedMonths));
                 }
             }
         }
@@ -113,10 +112,6 @@ public class NewsAdapter extends ArrayAdapter<News> {
 
         Log.d(TAG, "Today's date in the current format " + todayFormattedDate);
         Log.d(TAG, "Days " + elapsedDays + " Hours " + elapsedHours + " Minutes " + elapsedMinutes + " Seconds " + elapsedSeconds);
-
-//        String []stringParts = currentNews.getPublicationDate().split("T");
-
-
         return listItemView;
     }
 }

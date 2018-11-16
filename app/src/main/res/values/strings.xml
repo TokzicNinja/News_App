@@ -2,4 +2,10 @@
     <string name="app_name">News_App</string>
     <string name="no_internet">No internet connection</string>
     <string name="no_news">There are no news</string>
+    <string name="posted_an_hour">Posted %1$d hour ago</string>
+    <string name="posted_hours_ago">Posted %1$d hours ago</string>
+    <string name="posted_a_day">Posted %1$d day ago</string>
+    <string name="posted_days">Posted %1$d days ago</string>
+    <string name="posted_a_month">Posted %1$d month ago</string>
+    <string name="posted_months">Posted %1$d months ago</string>
 </resources>

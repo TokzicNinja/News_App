@@ -8,8 +8,6 @@ import android.support.v4.content.AsyncTaskLoader;
 import java.util.List;
 
 public class NewsLoader extends AsyncTaskLoader<List<News>> {
-
-    private static final String TAG = NewsLoader.class.getName();
     private String mUrl;
 
     public NewsLoader(@NonNull Context context, String url) {
@@ -28,8 +26,7 @@ public class NewsLoader extends AsyncTaskLoader<List<News>> {
         if (mUrl == null) {
             return null;
         } else {
-            List<News> news = QueryUtils.fetchNewsData(mUrl);
-            return news;
+            return QueryUtils.fetchNewsData(mUrl);
         }
     }
 }

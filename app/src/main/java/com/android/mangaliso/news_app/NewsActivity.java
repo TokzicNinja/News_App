@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.LoaderManager;
@@ -17,6 +18,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,12 +27,9 @@ public class NewsActivity extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<List<News>> {
 
     private static final String TAG = NewsActivity.class.getName();
-    private static final String GUARDIAN_API_URL_BASE = "content.guardianapis.com/search?";
     private NewsAdapter mNewsAdapter;
     private TextView mEmptyStateTextView;
     private static final int NEWS_LOADER_ID = 1;
-//    private SwipeRefreshLayout swipeRefreshLayout;
-//    private final Context mContext = getApplicationContext();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,22 +77,18 @@ public class NewsActivity extends AppCompatActivity
                 .authority("content.guardianapis.com")
                 .appendPath("search")
                 .appendQueryParameter("q","technology")
-//                .appendQueryParameter("tag","technology")
-//                .appendPath("/technology")
-//                .appendQueryParameter("from-date","2015-05-06")
                 .appendQueryParameter("api-key","test");
         String stringUrl = builtUri.toString();
         Log.d(TAG,"The built string is "+stringUrl);
         return new NewsLoader(this, stringUrl);
     }
 
+
     @Override
     public void onLoadFinished(@NonNull Loader<List<News>> loader, List<News> news) {
 
         View loading = findViewById(R.id.loading);
         loading.setVisibility(View.GONE);
-
-//        mEmptyStateTextView.setText("Askies shame, there are no news");
 
         if (news != null && !news.isEmpty()) {
             mNewsAdapter.clear();

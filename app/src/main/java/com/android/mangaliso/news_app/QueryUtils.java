@@ -32,11 +32,10 @@ public final class QueryUtils {
         try {
             jsonResponse = makeHttpRequest(url);
         } catch (IOException e) {
-            Log.e(TAG, "fetchNewsData: problem making HTTP request.", e);
+            Log.e(TAG,"fetchNewsData error: "+e);
         }
 
-        List<News> news = extractDataFromJson(jsonResponse);
-        return news;
+        return extractDataFromJson(jsonResponse);
     }
 
     private static List<News> extractDataFromJson(String newsJson) {
@@ -59,8 +58,6 @@ public final class QueryUtils {
                 String webTitle = currentNews.getString("webTitle");
                 String webUrl = currentNews.getString("webUrl");
 
-                Log.d(TAG, "These are the values " + sectionName + " " + pubDate + " " + webTitle + " " + webUrl);
-
                 News newsObj = new News(sectionName, pubDate, webTitle, webUrl);
                 news.add(newsObj);
             }
@@ -82,8 +79,6 @@ public final class QueryUtils {
         return url;
     }
 
-    //Know how this method works chief
-    //Make a few tweaks to it and make sure it doesn't look similar
     public static String makeHttpRequest(URL url) throws IOException {
 
         String jsonResponse = "";
