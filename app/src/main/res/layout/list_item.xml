@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="8dp"
+        card_view:cardCornerRadius="10dp"
+        card_view:cardElevation="5dp"
+        tool:targetApi="lollipop">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/section_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tool:text="Politics" />
+
+            <TextView
+                android:id="@+id/web_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tool:targetApi="o"
+                tool:text="Debate on final Brexot deal could use rare Commons procedure" />
+
+            <TextView
+                android:id="@+id/web_url"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tool:text="http://content.guardianapis.com/search?q=debates&amp;api-key=test" />
+
+            <TextView
+                android:id="@+id/publication_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tool:text="2018-10-31T06:00:12Z" />
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>
